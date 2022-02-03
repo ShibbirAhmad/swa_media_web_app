@@ -17,8 +17,9 @@ class CreateServiceOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->double('amount')->default(0);
-            $table->string('paid');
-            $table->double('payment_status')->default(0);
+            $table->double('paid');
+            $table->string('transaction_id')->nullable();
+            $table->string('payment_status')->nullable();
             $table->timestamps();
         });
     }

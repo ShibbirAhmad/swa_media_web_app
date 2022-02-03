@@ -34,6 +34,9 @@ use Illuminate\Support\Facades\Auth;
  Route::get('/business-card',[IndexController::class,'businessCard'])->name('business.card');
  Route::get('/service-details/{id}',[IndexController::class,'serviceDetails'])->name('service.details');
 
+
+ Route::get('api/create/service/order',[ServiceOrderController::class,'storeOrder']);
+
 ////start admin route
 Route::group([
     'prefix' => 'admin',
@@ -41,7 +44,7 @@ Route::group([
 ], function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
-    //resoure route
+    //resource route
     Route::resources([
         'page' => PageController::class,
         'category' => CategoryController::class,
