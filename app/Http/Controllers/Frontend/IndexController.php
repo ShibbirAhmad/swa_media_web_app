@@ -59,11 +59,21 @@ class IndexController extends Controller
         return view('frontend.business',compact('business_card'));
     }
 
+  
+  
     public function serviceDetails($id)
     {
         $service = Service::findOrFail($id);
         $related_services =Service::where('service_type',$service->service_type)->where('id','!=',$service->id)->get();
         return view('frontend.logoPayment', compact('service','related_services'));
+    }
+
+  
+    public function serviceSearch(Request $request)
+    {
+      
+        $services =Service::where('title','like','%'.$request->search.'%')->orWhere('description','like','%'.$request->search.'%')->get();
+        return view('frontend.search', compact('services'));
     }
 
 

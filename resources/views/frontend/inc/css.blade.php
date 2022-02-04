@@ -10,6 +10,13 @@
     <style>
 
 
+
+      .service_search_btn {
+          border: none;
+          height: 26px;
+          padding-top: 1px !important;
+      }
+
       .p_btn_container{
         width: 80%;
         margin-left:5%;
