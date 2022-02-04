@@ -13,28 +13,22 @@ class CartController extends Controller
 
            $service=Service::findOrFail($id);
     
-           //if cart from wishlist 
-           if (!empty($request->wishlist_rowId)) {
-               Cart::instance('wishlist')->remove($request->wishlist_rowId);
-           }
-
-            Cart::add([
+           Cart::add([
                 'id' => $service->id,
-                'name'=>$service->name,
+                'name'=>$service->title,
                 'qty' => $request->quantity ?? 1,
                 'price' => $service->price,
                 'weight' => 0,
                 'tax' => 0,
                 'options' =>
                      [
-                         'image'=> $service->thumbnail_img ?? 'noimage.png',
+                         'image'=> $service->image ?? 'noimage.png',
                       ]
             ]);
 
         return response()->json([
             'status'=>'OK',
-            'message'=>$service->name.' added your cart',
-            'wishlist_item'=>Cart::instance('wishlist')->count(),
+            'message'=>$service->name.' added your cart'
         ]);
         
 
@@ -44,23 +38,19 @@ class CartController extends Controller
 
     $cart_content=Cart::content();
     $cart_total=Cart::subtotal();
-        return response()->json([
-            'status' => 'OK',
-            'cart_total'=>$cart_total,
-            'cart_content'=>$cart_content,
-            'item_count'=>Cart::count()
-        ]);
 
+    return view('frontend.cart',compact('cart_content','cart_total'));
+       
     }
 
 
     
- public function viewCart(){
+    public function viewCart(){
 
-    $cart_content=Cart::content();
-    $cart_total=Cart::subtotal();
-    $cart_item = Cart::count() ;
-    return view('frontend.cart',compact(['cart_content','cart_total','cart_item']));
+        $cart_content=Cart::content();
+        $cart_total=Cart::subtotal();
+        $cart_item = Cart::count() ;
+        return view('frontend.cart',compact(['cart_content','cart_total','cart_item']));
 
     }
 
@@ -93,14 +83,9 @@ class CartController extends Controller
     }
 
     public  function cartDestroy($rowId){
+
         Cart::remove($rowId);
-        $cart_total=Cart::subtotal();
-        return response()->json([
-            'status'=>'OK',
-            'message' => 'item removed from your cart',
-            'cart_total'=>$cart_total,
-            'item_count'=>Cart::count(),
-        ]);
+        return redirect()->back();
 
 
     }

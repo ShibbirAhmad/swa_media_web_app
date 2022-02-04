@@ -9,7 +9,7 @@ use App\Models\CompanyLogo;
 use Illuminate\Http\Request;
 use App\Models\GeneralSetting;
 use App\Http\Controllers\Controller;
-use App\Models\Service;
+use App\Models\Service;  
 use Illuminate\Support\Facades\Artisan;
 
 class IndexController extends Controller
@@ -61,8 +61,9 @@ class IndexController extends Controller
 
     public function serviceDetails($id)
     {
-        $detailsService = Service::findOrFail($id);
-        return view('frontend.logoPayment', compact('detailsService'));
+        $service = Service::findOrFail($id);
+        $related_services =Service::where('service_type',$service->service_type)->where('id','!=',$service->id)->get();
+        return view('frontend.logoPayment', compact('service','related_services'));
     }
 
 
