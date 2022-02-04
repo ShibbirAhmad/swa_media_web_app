@@ -36,7 +36,7 @@
                 </a>
              </li> --}}
 
-             <li class="menu">
+             {{-- <li class="menu">
                 <a href="{{ route('slider.index') }}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -49,9 +49,9 @@
                         <span>Slider</span>
                     </div>
                 </a>
-             </li>
+             </li> --}}
 
-             <li class="menu">
+             {{-- <li class="menu">
                 <a href="{{ route('banner.index') }}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -64,10 +64,10 @@
                         <span>Banners</span>
                     </div>
                 </a>
-             </li>
+             </li> --}}
 
 
-             <li class="menu">
+             {{-- <li class="menu">
                 <a href="{{ route('company_logo.index') }}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -80,7 +80,7 @@
                         <span>Logos</span>
                     </div>
                 </a>
-             </li>
+             </li> --}}
 
             <li class="menu">
                 <a href="{{ route('client.index') }}" aria-expanded="false" class="dropdown-toggle">
@@ -97,15 +97,28 @@
                     </div>
                 </a>
             </li>
-            <li class="menu">
+            {{-- <li class="menu">
                 <a href="{{ route('service.index') }}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <i class="fa fa-building fa-2x" aria-hidden="true"></i>
                         <span>Services</span>
                     </div>
                 </a>
-            </li>
-
+            </li> --}}
+            <li class="menu">
+                <a href="{{ route('service.index') }}" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-target">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="2"></circle>
+                        </svg>
+                        <span>Services</span>
+                    </div>
+                </a>
+             </li>
             <li class="menu">
                 <a href="{{ route('allAdmin') }}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
@@ -157,13 +170,13 @@
 
 
 
-            <li class="menu menu-heading">
+            {{-- <li class="menu menu-heading">
                 <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="feather feather-minus">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg><span>Interface</span></div>
-            </li>
+            </li> --}}
 
 
 
@@ -180,6 +193,21 @@
                     </div>
                 </a>
             </li>
+
+            <li class="menu">
+                <a href="{{ route('contact.index') }}" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-target">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="2"></circle>
+                        </svg>
+                        <span>Contact</span>
+                    </div>
+                </a>
+             </li>
 
 
 

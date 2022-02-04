@@ -38,23 +38,19 @@ class CartController extends Controller
 
     $cart_content=Cart::content();
     $cart_total=Cart::subtotal();
-        return response()->json([
-            'status' => 'OK',
-            'cart_total'=>$cart_total,
-            'cart_content'=>$cart_content,
-            'item_count'=>Cart::count()
-        ]);
 
+    return view('frontend.cart',compact('cart_content','cart_total'));
+       
     }
 
 
     
- public function viewCart(){
+    public function viewCart(){
 
-    $cart_content=Cart::content();
-    $cart_total=Cart::subtotal();
-    $cart_item = Cart::count() ;
-    return view('frontend.cart',compact(['cart_content','cart_total','cart_item']));
+        $cart_content=Cart::content();
+        $cart_total=Cart::subtotal();
+        $cart_item = Cart::count() ;
+        return view('frontend.cart',compact(['cart_content','cart_total','cart_item']));
 
     }
 
@@ -87,14 +83,9 @@ class CartController extends Controller
     }
 
     public  function cartDestroy($rowId){
+
         Cart::remove($rowId);
-        $cart_total=Cart::subtotal();
-        return response()->json([
-            'status'=>'OK',
-            'message' => 'item removed from your cart',
-            'cart_total'=>$cart_total,
-            'item_count'=>Cart::count(),
-        ]);
+        return redirect()->back();
 
 
     }

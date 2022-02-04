@@ -6,13 +6,9 @@
 
 
 
-
-
-
-
-
-
 <script>
+
+    
     $(document).ready(function() {
 
 
@@ -61,15 +57,13 @@
                         method: 'post',
                         data: resp_data,
                         cache: false,
-                        contentType: false,
-                        processData: false,
                         success: function(resp) {
                             console.log(resp)
                             if (resp.success == "OK") {
                                 toastMessage(resp.message);
-                                setTimeout(() => {
-                                    location.reload();
-                                }, 3000);
+                                // setTimeout(() => {
+                                //     location.reload();
+                                // }, 3000);
                             } else {
                                 Swal.fire({
                                     type: 'error',
@@ -169,4 +163,7 @@
         }
 
     });
+
+
+
 </script>

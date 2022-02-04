@@ -17,6 +17,11 @@ use App\Http\Controllers\Frontend\ServiceOrderController as ServiceOrder;
 use App\Http\Controllers\Admin\CompanyLogoController;
 use App\Http\Controllers\Admin\ServiceOrderController;
 use App\Http\Controllers\Admin\GeneralSettingController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\ServiceOrderController as AdminServiceOrderController;
+use App\Http\Controllers\Admin\UserController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +36,7 @@ use App\Http\Controllers\Admin\GeneralSettingController;
 
  Route::get('/',[IndexController::class,'index'])->name('welcome');
  Route::get('/our-team',[IndexController::class,'team']);
- Route::get('/our-services',[IndexController::class,'service'])->name('service');
+ Route::get('/services',[IndexController::class,'service'])->name('service');
  Route::get('/logo-design',[IndexController::class,'logoDesign'])->name('logo.design');
  Route::get('/business-card',[IndexController::class,'businessCard'])->name('business.card');
  Route::get('/service-details/{id}',[IndexController::class,'serviceDetails'])->name('service.details');
@@ -39,10 +44,30 @@ use App\Http\Controllers\Admin\GeneralSettingController;
  Route::get('cart/view', [CartController::class, 'viewCart'])->name('cart_view');
  Route::post('api/add/cart/{id}', [CartController::class, 'addCart'])->name('cart_add');
  Route::post('api/cart/item/update', [CartController::class, 'cartUpdate'])->name('cart_update');
- Route::get('api/cart/remove/{rowId}', [CartController::class, 'cartDestroy'])->name('cart_remove');
- Route::get('api/cart/content', [CartController::class, 'cartContent'])->name('cart_content');
+ Route::get('cart/remove/{rowId}', [CartController::class, 'cartDestroy'])->name('cart_remove');
+ Route::get('cart/content', [CartController::class, 'cartContent'])->name('cart_content');
 //service order routes
  Route::post('api/create/service/order',[ServiceOrder::class,'storeOrder']);
+ Route::get('/contact',[IndexController::class,'contact'])->name('contact');
+ Route::get('/support',[IndexController::class,'support'])->name('support');
+ Route::get('/about',[IndexController::class,'about'])->name('about');
+ Route::get('/company',[IndexController::class,'company'])->name('company');
+
+ //sign up
+
+
+
+ Route::group([
+    'middleware' => 'auth'
+], function () {
+
+    //user dashboard
+    Route::get('/dashboard', [ServiceOrderController::class, 'index'])->name('user.dashboard');
+
+});
+
+
+ Route::get('api/create/service/order',[ServiceOrderController::class,'storeOrder']);
 
 ////start admin route
 Route::group([
@@ -51,6 +76,14 @@ Route::group([
 ], function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
+    /*--- Service Controller Start ---*/
+    Route::get('service/order', [AdminServiceOrderController::class, 'serviceOrders'])->name('service.order');
+    Route::get('service/order/item', [AdminServiceOrderController::class, 'serviceOrderItem'])->name('service.orderItem');
+    /*--- Service Controller End ---*/
+
+
+
+
     //resource route
     Route::resources([
         'page' => PageController::class,
@@ -67,15 +100,23 @@ Route::group([
 
 Auth::routes();
 
+
 Route::get('/admin/login', [HomeController::class, 'login'])->name('admin.login');
 
-Route::get('/admins', [AdminController::class, 'allAdmin'])->name('allAdmin');
-Route::get('/admin/add', [AdminController::class, 'addAdmin'])->name('admin.create');
-Route::post('/admin/store', [AdminController::class, 'storeAdmin'])->name('admin.store');
-Route::get('/admin/edit/{id}', [AdminController::class, 'editAdmin'])->name('admin.edit');
-Route::post('/admin/update/{id}', [AdminController::class, 'updateAdmin'])->name('admin.update');
-Route::get('/admin/status/{id}', [AdminController::class, 'status'])->name('admin.status');
+/*-- Create Admin From Admin Dashboard --*/
+Route::get('/admins', [UserController::class, 'allAdmin'])->name('allAdmin');
+Route::get('/admin/add', [UserController::class, 'addAdmin'])->name('admin.create');
+Route::post('/admin/store', [UserController::class, 'storeAdmin'])->name('admin.store');
+Route::get('/admin/edit/{id}', [UserController::class, 'editAdmin'])->name('admin.edit');
+Route::post('/admin/update/{id}', [UserController::class, 'updateAdmin'])->name('admin.update');
+Route::get('/admin/status/{id}', [UserController::class, 'status'])->name('admin.status');
+/*-- Create Admin From Admin Dashboard --*/
 
-//Service Order Controller
-Route::get('service/order', [ServiceOrderController::class, 'serviceOrders'])->name('service.order');
-Route::get('service/order/item', [ServiceOrderController::class, 'serviceOrderItem'])->name('service.orderItem');
+/*--- Service Controller Start ---*/
+// Route::get('service/order', [AdminServiceOrderController::class, 'serviceOrders'])->name('service.order');
+// Route::get('service/order/item', [AdminServiceOrderController::class, 'serviceOrderItem'])->name('service.orderItem');
+/*--- Service Controller End ---*/
+
+//Contact Controller
+Route::post('contact/store', [ContactController::class, 'store'])->name('contact.store');
+Route::get('contacts', [ContactController::class, 'index'])->name('contact.index');

@@ -1,11 +1,7 @@
 
-    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/fontawesome.min.css.css')}}" />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.css">
@@ -17,6 +13,16 @@
       .p_btn_container{
         width: 80%;
         margin-left:5%;
+
+      }
+
+      .paypal_payment_img{
+        width: 90%;
+      }
+
+      .cart_preview_img{
+         width: 100px;
+         height: 100px;
       }
 
 
