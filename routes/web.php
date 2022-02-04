@@ -54,6 +54,9 @@ use Illuminate\Support\Facades\Auth;
 
 });
 
+
+ Route::get('api/create/service/order',[ServiceOrderController::class,'storeOrder']);
+
 ////start admin route
 Route::group([
     'prefix' => 'admin',

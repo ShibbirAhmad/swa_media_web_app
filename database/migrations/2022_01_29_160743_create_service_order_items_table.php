@@ -17,6 +17,7 @@ class CreateServiceOrderItemsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('service_id');
             $table->unsignedBigInteger('service_order_id');
+            $table->integer('qty');
             $table->timestamps();
         });
     }

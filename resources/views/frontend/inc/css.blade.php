@@ -8,3 +8,5 @@
     />
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.css">
+    <script src="{{asset('frontend/js/jquery-3.6.0.min.js')}}"></script>
