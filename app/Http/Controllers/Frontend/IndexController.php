@@ -48,14 +48,14 @@ class IndexController extends Controller
 
     public function logoDesign()
     {
-        $logo_designs = Service::where('service_type','logo_design')->get();
+        $logo_designs = Service::where('service_type','logo_design')->where('status', 1)->get();
         return view('frontend.logoDesign',compact('logo_designs'));
     }
 
 
     public function businessCard()
     {
-        $business_card = Service::where('service_type','business_card_design')->get();
+        $business_card = Service::where('service_type','business_card_design')->where('status', 1)->get();
         return view('frontend.business',compact('business_card'));
     }
 
