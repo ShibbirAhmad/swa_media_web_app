@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('role')->default(1);  //role=1=user,2=admin
             $table->text('avator')->default('user.png');
+            $table->text('address')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

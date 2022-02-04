@@ -13,17 +13,12 @@ class HomeController extends Controller
         return view('admin.index',compact('banners'));
     }
 
-    public function login(Request $request){
+    public function adminLogin(){
 
-
-        return  view('auth.login');
+        return  view('admin.login');
     }
 
 
-    public function userDashboard()
-    {
-        return view('admin.user_dashboard.user_dashboard');
-    }
 
 
 }

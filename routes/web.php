@@ -52,7 +52,6 @@ use App\Http\Controllers\Admin\UserController;
  Route::get('/support',[IndexController::class,'support'])->name('support');
  Route::get('/about',[IndexController::class,'about'])->name('about');
  Route::get('/company',[IndexController::class,'company'])->name('company');
- Route::get('/user/login',[IndexController::class,'userLogin'])->name('user.login');
 
  //sign up
 
@@ -102,7 +101,7 @@ Route::group([
 Auth::routes();
 
 
-Route::get('/admin/login', [HomeController::class, 'login'])->name('admin.login');
+Route::get('/admin/secret', [HomeController::class, 'adminLogin'])->name('admin.login');
 
 /*-- Create Admin From Admin Dashboard --*/
 Route::get('/admins', [UserController::class, 'allAdmin'])->name('allAdmin');
@@ -113,10 +112,6 @@ Route::post('/admin/update/{id}', [UserController::class, 'updateAdmin'])->name(
 Route::get('/admin/status/{id}', [UserController::class, 'status'])->name('admin.status');
 /*-- Create Admin From Admin Dashboard --*/
 
-/*--- Service Controller Start ---*/
-// Route::get('service/order', [AdminServiceOrderController::class, 'serviceOrders'])->name('service.order');
-// Route::get('service/order/item', [AdminServiceOrderController::class, 'serviceOrderItem'])->name('service.orderItem');
-/*--- Service Controller End ---*/
 
 //Contact Controller
 Route::post('contact/store', [ContactController::class, 'store'])->name('contact.store');

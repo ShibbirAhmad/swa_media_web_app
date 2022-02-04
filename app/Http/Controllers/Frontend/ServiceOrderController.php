@@ -17,7 +17,7 @@ class ServiceOrderController extends Controller
     public function orderList()
     {
         $user = Auth::user();
-        
+
     }
     // public function orderList()
     // {
@@ -45,10 +45,10 @@ class ServiceOrderController extends Controller
 
 
 
-   
+
 
     public  function  storeOrder(Request $request){
-        
+
         DB::beginTransaction();
         try {
 
@@ -63,7 +63,7 @@ class ServiceOrderController extends Controller
             $order->paid=$request->paid;
             $order->save();
             //save order details
-            foreach(Cart::content() as $service){    
+            foreach(Cart::content() as $service){
                  $details=new ServiceOrderItem();
                  $details->service_order_id=$order->id;
                  $details->service_id=$service->id;
@@ -76,7 +76,7 @@ class ServiceOrderController extends Controller
              'success' => 'OK',
              'message' => 'Your order placed successfully.',
          ]);
-       
+
         } catch (\Throwable $e) {
             DB::rollBack();
             return response()->json([
@@ -84,8 +84,8 @@ class ServiceOrderController extends Controller
                 'message' => $e->getMessage(),
             ]);
         }
-      
- } 
+
+ }
 
 
 
