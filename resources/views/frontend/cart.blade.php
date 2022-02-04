@@ -1,0 +1,62 @@
+@extends('frontend.layouts.app')
+@section('content')
+<section id="service-page">
+    <div class="container">
+        <div class="ps-section__content">
+            <div class="table-responsive">
+                <table class="table text-center table-hover table-striped ps-table--shopping-cart">
+                    <thead>
+                        <tr>
+                            <th>Product </th>
+                            <th>Size </th>
+                            <th>Color </th>
+                            <th>PRICE</th>
+                            <th>QUANTITY</th>
+                            <th>TOTAL</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       @foreach ($cart_content as $item)
+                            <tr class="{{$item->rowId  }}" >
+                                <td>
+                                    <div class="ps-product--cart">
+                                        <div class="ps-product__thumbnail"><a href="{{ route('product',$item->options->slug) }}"><img src="{{ asset('storage/images/thumbnail_img/'.$item->options->image) }}" ></a></div>
+                                        <div class="ps-product__content"><a href="{{ route('product',$item->options->slug) }}">{{ $item->name }}</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td > {{ $item->options->size ? $item->options->size : 'Null' }} </td>
+                                <td > {{ $item->options->color ? $item->options->color : 'Null' }} </td>
+                                <td class="price">&#2547;{{ $item->price }}</td>
+                                <td>
+                                    <div class="form-group--number">
+                                        <button cart_row_id="{{ $item->rowId }}"   class="up cart_item_increment">+</button>
+                                        <button cart_row_id="{{ $item->rowId }}"  class="down cart_item_dicrement">-</button>
+                                        <input class="form-control" type="text" id="__cart_update_input_{{ $item->rowId }}" value="{{ $item->qty }}">
+                                    </div>
+                                </td>
+                                <td>  <span>&#2547;</span><span id="__total_of_cart_item_{{ $item->rowId }}" > {{ $item->qty * $item->price }} </span></td>
+                                <td><a  class="__cart_destroy__"><i cart_row_id="{{ $item->rowId }}" class="icon-cross __remove_cart"></i></a></td>
+                            </tr>
+                                                          
+                       @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+         </div>
+        <div class="ps-section__footer">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+                    <div class="ps-block--shopping-total">
+                        <div class="ps-block__header">
+                            <p>Subtotal  <span>&#2547;</span><span id="__cart_total_in_cart_view">{{ $cart_total }}</span></p>
+                        </div>
+                    </div><a class="ps-btn ps-btn--fullwidth" href="{{ route('order.index') }}">Proceed to checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endsection

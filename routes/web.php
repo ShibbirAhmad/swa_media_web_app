@@ -1,20 +1,22 @@
 <?php
 
-use App\Http\Controllers\Frontend\IndexController;
-use App\Http\Controllers\Admin\TeamController;
-use App\Http\Controllers\Admin\ClientController;
-use App\Http\Controllers\Admin\GeneralSettingController;
-use App\Http\Controllers\Admin\CategoryController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PageController;
-use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\Admin\BannerController;
-use App\Http\Controllers\Admin\CompanyLogoController;
-use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\ServiceOrderController as ServiceOrder;
+use App\Http\Controllers\Admin\CompanyLogoController;
 use App\Http\Controllers\Admin\ServiceOrderController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\GeneralSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +35,14 @@ use Illuminate\Support\Facades\Auth;
  Route::get('/logo-design',[IndexController::class,'logoDesign'])->name('logo.design');
  Route::get('/business-card',[IndexController::class,'businessCard'])->name('business.card');
  Route::get('/service-details/{id}',[IndexController::class,'serviceDetails'])->name('service.details');
-
-
- Route::get('api/create/service/order',[ServiceOrderController::class,'storeOrder']);
+//cart routes
+ Route::get('cart/view', [CartController::class, 'viewCart'])->name('cart_view');
+ Route::post('api/add/cart/{id}', [CartController::class, 'addCart'])->name('cart_add');
+ Route::post('api/cart/item/update', [CartController::class, 'cartUpdate'])->name('cart_update');
+ Route::get('api/cart/remove/{rowId}', [CartController::class, 'cartDestroy'])->name('cart_remove');
+ Route::get('api/cart/content', [CartController::class, 'cartContent'])->name('cart_content');
+//service order routes
+ Route::post('api/create/service/order',[ServiceOrder::class,'storeOrder']);
 
 ////start admin route
 Route::group([

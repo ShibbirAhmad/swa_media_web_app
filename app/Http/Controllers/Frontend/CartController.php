@@ -13,28 +13,22 @@ class CartController extends Controller
 
            $service=Service::findOrFail($id);
     
-           //if cart from wishlist 
-           if (!empty($request->wishlist_rowId)) {
-               Cart::instance('wishlist')->remove($request->wishlist_rowId);
-           }
-
-            Cart::add([
+           Cart::add([
                 'id' => $service->id,
-                'name'=>$service->name,
+                'name'=>$service->title,
                 'qty' => $request->quantity ?? 1,
                 'price' => $service->price,
                 'weight' => 0,
                 'tax' => 0,
                 'options' =>
                      [
-                         'image'=> $service->thumbnail_img ?? 'noimage.png',
+                         'image'=> $service->image ?? 'noimage.png',
                       ]
             ]);
 
         return response()->json([
             'status'=>'OK',
-            'message'=>$service->name.' added your cart',
-            'wishlist_item'=>Cart::instance('wishlist')->count(),
+            'message'=>$service->name.' added your cart'
         ]);
         
 

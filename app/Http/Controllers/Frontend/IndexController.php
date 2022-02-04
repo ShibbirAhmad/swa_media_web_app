@@ -61,8 +61,8 @@ class IndexController extends Controller
 
     public function serviceDetails($id)
     {
-        $detailsService = Service::findOrFail($id);
-        return view('frontend.logoPayment', compact('detailsService'));
+        $service = Service::findOrFail($id);
+        return view('frontend.logoPayment', compact('service'));
     }
 
 

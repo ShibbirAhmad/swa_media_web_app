@@ -16,6 +16,7 @@ class CreateServiceOrdersTable extends Migration
         Schema::create('service_orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('invoice_no');
             $table->double('amount')->default(0);
             $table->double('paid');
             $table->string('transaction_id')->nullable();
