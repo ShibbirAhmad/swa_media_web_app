@@ -3,11 +3,12 @@
     <section id="payment">
         <div class="container">
             <div class="search text-end">
-                <form action="">
-                    <input type="text" class="search-box" />
-                    <span class="search-icon"> <i class="fas fa-search"></i></span>
+                <form method="post" action="{{ route('search_service') }}">
+                   @csrf
+                  <input type="text" name="search" class="search-box" />
+                  <button type="submit" class="service_search_btn search-icon"> <i class="fas fa-search"></i></button>
                 </form>
-            </div>
+              </div>
             <div class="row justify-content-evenly">
                 <div class="col-md-5 offset-lg-1 offset-sm-2 text-center">
                     <h3 class="title text-center">{{ $service->title }}</h3>

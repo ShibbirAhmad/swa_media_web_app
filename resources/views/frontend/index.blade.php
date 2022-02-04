@@ -4,9 +4,10 @@
  <section id="media">
     <div class="container">
       <div class="search text-end">
-        <form action="">
-          <input type="text" class="search-box" />
-          <span class="search-icon"> <i class="fas fa-search"></i></span>
+        <form method="post" action="{{ route('search_service') }}">
+           @csrf
+          <input type="text" name="search" class="search-box" />
+          <button type="submit" class="service_search_btn search-icon"> <i class="fas fa-search"></i></button>
         </form>
       </div>
       <div class="row justify-space-between">
