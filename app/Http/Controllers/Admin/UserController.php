@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Expr\FuncCall;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
     public function allAdmin ()
     {
-        $admins = Admin::all();
+        $admins = User::all();
         return view('admin.admin.admin', compact('admins'));
     }
 
@@ -33,16 +33,15 @@ class AdminController extends Controller
             'email' => 'required ',
             'password' => 'required',
             'name' => 'required',
-
-
         ]);
-        $admin = new Admin();
+        $admin = new User();
         $admin->name = $request->name;
+        $admin->role = 2;
         $admin->email = $request->email;
         $admin->password = Hash::make($request->password);
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
+        if ($request->hasFile('avator')) {
+            $image = $request->file('avator');
             $photo_full_name = time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('backend/images/admin/'), $photo_full_name);
             $admin->image = $photo_full_name;
@@ -54,7 +53,7 @@ class AdminController extends Controller
     public function editAdmin($id)
     {
 
-        $admin = Admin::find($id);
+        $admin = User::find($id);
         $html = view('admin.admin.edit', compact('admin'))->render();
 
         return response()->json([
@@ -68,12 +67,13 @@ class AdminController extends Controller
             'name' => 'required',
         ]);
 
-        $admin =Admin::find($id);
+        $admin =User::find($id);
         $admin->name = $request->name;
+        $admin->role = 2;
         $admin->email = $request->email;
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
+        if ($request->hasFile('avator')) {
+            $image = $request->file('avator');
             $photo_full_name = time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('backend/images/admin/'), $photo_full_name);
             $admin->image = $photo_full_name;
@@ -84,7 +84,7 @@ class AdminController extends Controller
 
     public function status($id)
     {
-        $admin = Admin::findOrFail($id);
+        $admin = User::findOrFail($id);
         if ($admin->status==1){
             $admin->status=0 ;
             $admin->save();

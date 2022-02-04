@@ -24,7 +24,7 @@ class IndexController extends Controller
         $logos = CompanyLogo::get();
         $clients = Client::where('status',1)->get();
         $setting=GeneralSetting::latest()->first();
-        $services = Service::all();
+        $services = Service::where('status',1)->orderBy('id', 'desc')->get();
 
         return view('frontend.index',compact(['clients','teams','sliders','logos','setting', 'services']));
     }
@@ -41,7 +41,7 @@ class IndexController extends Controller
 
     public function service()
     {
-        $services = Service::all();
+        $services = Service::where('status', 1)->get();
         return view('frontend.service', compact('services'));
     }
 
@@ -65,6 +65,35 @@ class IndexController extends Controller
         return view('frontend.logoPayment', compact('detailsService'));
     }
 
+
+    public function contact()
+    {
+        return view('frontend.contact');
+    }
+    public function support()
+    {
+        return view('frontend.support');
+    }
+
+    public function about()
+    {
+        return view('frontend.about');
+    }
+
+    public function company()
+    {
+        return view('frontend.company');
+    }
+
+    public function userLogin()
+    {
+        return view('frontend.sign_in');
+    }
+
+    public function userRegister()
+    {
+        return view('frontend.sign_up');
+    }
 
 
 

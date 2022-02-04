@@ -51,6 +51,7 @@ class ServiceController extends Controller
         if (!$validator->fails()) {
             $service = new Service();
             $service->title = $request->title;
+            $service->status = 1;
             $service->service_type = $request->service_type;
             $service->price = $request->price;
             $service->description = $request->description;
@@ -81,7 +82,19 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        //
+        $service = Service::findOrFail($id);
+            if ($service->status==1){
+                $service->status=0 ;
+                $service->save();
+            }else {
+                $service->status=1 ;
+                $service->save();
+            }
+
+                return response()->json([
+                    'success' => "OK",
+                    'message' => 'status changed ',
+                ]);
     }
 
     /**
@@ -148,9 +161,9 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        $deleteService = Service::findOrFaild($id);
-        $deleteService->delete();
-        return redirect()->route('service.index');
+        // $deleteService = Service::findOrFaild($id);
+        // $deleteService->delete();
+        // return redirect()->route('service.index');
     }
 
 }

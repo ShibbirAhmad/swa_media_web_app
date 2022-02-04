@@ -54,7 +54,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if ($client->status==1)
+                                                @if ($client->status==1)
                                                     <a href="#" route="{{ route('client.show', $client->id) }}"
                                                         class="btn btn-sm btn-warning btn_status_change">
                                                         <i class="fa fa-ban"></i>

@@ -18,4 +18,12 @@ class HomeController extends Controller
 
         return  view('auth.login');
     }
+
+
+    public function userDashboard()
+    {
+        return view('admin.user_dashboard.user_dashboard');
+    }
+
+
 }

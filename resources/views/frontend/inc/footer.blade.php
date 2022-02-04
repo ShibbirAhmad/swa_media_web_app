@@ -19,7 +19,7 @@
         <div class="col-md-3 col-sm-6 mt-sm-5 product company">
           <h4>Company</h4>
           <ul>
-            <li><a href="">About Us</a></li>
+            <li><a href="{{route('about')}}">About Us</a></li>
             <li><a href="">Carees</a></li>
             <li><a href="">Partners</a></li>
             <li><a href="">Media Kit</a></li>

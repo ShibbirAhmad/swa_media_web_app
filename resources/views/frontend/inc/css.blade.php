@@ -1,5 +1,5 @@
 
-    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/fontawesome.min.css.css')}}" />
 
     <link

@@ -49,7 +49,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($validated)) {
             if (Auth::user()->role == 1) {
-                return redirect()->route('user.dashboar');
+                return redirect()->route('user.dashboard');
             } elseif (Auth::user()->role == 2) {
                 return redirect()->route('admin.home');
 

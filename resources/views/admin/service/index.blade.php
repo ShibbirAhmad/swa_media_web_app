@@ -45,10 +45,17 @@
                                                 <td>{{$service->price}}</td>
                                                 <td>{{$service->description}}</td>
                                                 <td>
-                                                    <a href="#" route="{{ route('service.destroy', $service->id) }}"
-                                                        class="btn btn-sm btn-danger btn_delete">
-                                                        <i class="fa fa-trash"></i>
+                                                    @if ($service->status==1)
+                                                    <a href="#" route="{{ route('service.show', $service->id) }}"
+                                                        class="btn btn-sm btn-warning btn_status_change">
+                                                        <i class="fa fa-ban"></i>
                                                     </a>
+                                                    @else
+                                                    <a href="#" route="{{ route('service.show', $service->id) }}"
+                                                        class="btn btn-sm btn-success btn_status_change">
+                                                        <i class="fa fa-check"></i>
+                                                    </a>
+                                                    @endif
                                                     <a href="#" route="{{ route('service.edit', $service->id) }}"
                                                         class="btn btn-sm btn-success modal_show_edit"
                                                         modal-title="Edit-Service">
