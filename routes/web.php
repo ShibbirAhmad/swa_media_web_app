@@ -40,6 +40,7 @@ use Illuminate\Support\Facades\Auth;
  Route::get('/support',[IndexController::class,'support'])->name('support');
  Route::get('/about',[IndexController::class,'about'])->name('about');
  Route::get('/company',[IndexController::class,'company'])->name('company');
+ Route::get('/user/login',[IndexController::class,'userLogin'])->name('user.login');
 
  //sign up
 

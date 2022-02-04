@@ -18,7 +18,8 @@
         <div class="collapse navbar-collapse" id="mynav">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item registation d-flex">
-              <a class="nav-link signin" href="{{url('/login')}}">Sign in </a>
+              <a class="nav-link signin" href="{{route('user.login')}}">Sign in </a>
+              {{-- <a class="nav-link signin" href="{{url('/login')}}">Sign in </a> --}}
               <a class="nav-link" href="{{url('/register')}}">Sign up </a>
             </li>
             <li class="nav-item vector">
@@ -53,10 +54,13 @@
         <li class="nav-item">
           <a class="nav-link" href="/business-card">Desgine of Busness Card</a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{route('user.dashboard')}}">Dashboard</a>
-        </li>
+        </li> --}}
         @if (Auth::user())
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('user.dashboard')}}">Dashboard</a>
+            </li>
             <li class="nav-item">
                 <form action="{{route('logout')}}" method="post">
                     @csrf

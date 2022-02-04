@@ -52,6 +52,7 @@ body {
   -moz-transform: .5s;
   -ms-transform: .5s;
   -o-transform: .5s; */
+    height: 80px;
 }
 .logo {
     margin: 5px 0 5px 30px;

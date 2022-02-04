@@ -11,8 +11,8 @@
                       <form action="{{route('contact.store')}}" method="POST">
                         @csrf
                           <div class="input-group mb-3">
-                              <input type="text" name="name" class="form-control me-3" placeholder="Name">
-                              <input type="email" name="email" class="form-control" placeholder="Email">
+                              <input type="text" name="name" class="form-control me-3" placeholder="Name" required>
+                              <input type="email" name="email" class="form-control" placeholder="Email" required>
                           </div>
                           <div class="mb-3">
                               <input type="text" name="subject" class="form-control me-3" placeholder="subject">
