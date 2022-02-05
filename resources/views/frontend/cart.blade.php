@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 @section('content')
-<section id="service-page">
+<section class="service-page">
     <div class="container">
         <div class="ps-section__content">
             <div class="table-responsive">

@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Banner;
-use App\Models\Client;
-use App\Models\Service;
-use App\Models\ServiceOrderItem;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Service;
+use App\Models\ServiceOrder;
+use App\Models\ServiceOrderItem;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+
 class HomeController extends Controller
 {
     public function index(){
-        $services = ServiceOrderItem::Latest()->take(8)->get();
+        $services = ServiceOrder::latest()->take(10)->orderBy('id','desc')->get();
         $all_services = Service::count();
-        $clients = Client::count();
-        $date = Carbon::now()->subDays(7);
-        $top_selling_products_this_week = Service::where('created_at', '>=', $date)->get();
+        $clients = User::where('role',1)->count();
+        $top_selling_products_this_week= ServiceOrderItem::where('created_at', '>=', Carbon::today()->subDays('7')->startOfDay())
+                                     ->where('created_at', '<=', Carbon::today()->endOfDay())
+                                     ->select(DB::raw('count(*) as total_sale, service_id'))
+                                     ->groupBy('service_id')->get()->each(function($value){
+                                        $value->{'service'} = Service::findOrFail($value->service_id);
+                                     });
         return view('admin.index',compact('services', 'all_services', 'clients', 'top_selling_products_this_week'));
     }
 

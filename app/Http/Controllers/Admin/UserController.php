@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function allAdmin ()
     {
-        $admins = User::all();
+        $admins = User::where('role',2)->get();
         return view('admin.admin.admin', compact('admins'));
     }
 
@@ -37,15 +37,9 @@ class UserController extends Controller
         $admin = new User();
         $admin->name = $request->name;
         $admin->role = 2;
+        $admin->phone = $request->phone;
         $admin->email = $request->email;
         $admin->password = Hash::make($request->password);
-
-        if ($request->hasFile('avator')) {
-            $image = $request->file('avator');
-            $photo_full_name = time().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('backend/images/admin/'), $photo_full_name);
-            $admin->image = $photo_full_name;
-        }
         $admin->save();
         return redirect()->route('allAdmin');
     }
@@ -71,13 +65,6 @@ class UserController extends Controller
         $admin->name = $request->name;
         $admin->role = 2;
         $admin->email = $request->email;
-
-        if ($request->hasFile('avator')) {
-            $image = $request->file('avator');
-            $photo_full_name = time().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('backend/images/admin/'), $photo_full_name);
-            $admin->image = $photo_full_name;
-        }
         $admin->save();
         return redirect()->route('allAdmin');
     }

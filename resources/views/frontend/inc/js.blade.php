@@ -61,9 +61,9 @@
                             console.log(resp)
                             if (resp.success == "OK") {
                                 toastMessage(resp.message);
-                                // setTimeout(() => {
-                                //     location.reload();
-                                // }, 3000);
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 3000);
                             } else {
                                 Swal.fire({
                                     type: 'error',

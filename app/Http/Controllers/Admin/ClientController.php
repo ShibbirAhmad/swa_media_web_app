@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -17,7 +18,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
+        $clients = User::all();
         return view('admin.client.index', compact('clients'));
     }
 
@@ -51,17 +52,8 @@ class ClientController extends Controller
         ]);
 
         if (!$validator->fails()) {
-            $client = new Client();
+            $client = new User();
             $client->name = $request->name;
-            $client->review = $request->review;
-            if ($request->hasFile('company_logo')) {
-                $file_path = $request->file('company_logo')->store('images/client','public');
-                $client->company_logo=$file_path ;
-            }
-            if ($request->hasFile('image')) {
-                $file_path = $request->file('image')->store('images/client','public');
-                $client->image=$file_path ;
-            }
             $client->status=1 ;
             $client->save() ;
 
@@ -86,7 +78,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-            $client = Client::findOrFail($id);
+            $client = User::findOrFail($id);
             if ($client->status==1){
                 $client->status=0 ;
                 $client->save();
@@ -110,7 +102,7 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        $client = Client::find($id);
+        $client = User::find($id);
         $html = view('admin.client.edit', compact('client'))->render();
 
         return response()->json([
@@ -133,17 +125,9 @@ class ClientController extends Controller
         ]);
 
         if (!$validator->fails()) {
-            $client = Client::findOrFail($id);
+            $client = User::findOrFail($id);
             $client->name = $request->name;
             $client->review = $request->review;
-            if ($request->hasFile('company_logo')) {
-                $file_path = $request->file('company_logo')->store('images/client','public');
-                $client->company_logo=$file_path ;
-            }
-            if ($request->hasFile('image')) {
-                $file_path = $request->file('image')->store('images/client','public');
-                $client->image=$file_path ;
-            }
             $client->save() ;
 
                 return response()->json([
@@ -167,7 +151,7 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        $client = Client::findOrFail($id);
+        $client = User::findOrFail($id);
         if ($client->delete()) {
             return response()->json([
                 'success' => "OK",

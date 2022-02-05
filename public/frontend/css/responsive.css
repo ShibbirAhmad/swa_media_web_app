@@ -31,7 +31,7 @@
   }
 
   /* service page */
-  #service-page{
+  .service-page{
     margin-left: 21%;
      margin-right: 5%;
    }
@@ -44,7 +44,7 @@
 @media (min-width: 768px) and (max-width: 991px) {
 
 
-  #payment .search .search-box, #service-page .search .search-box {
+  #payment .search .search-box, .service-page .search .search-box {
     width: 40%;
    }
   .main-header .logo {
@@ -93,7 +93,7 @@
   }
 
   /* service page */
-  #service-page{
+  .service-page{
     margin-left: 16%;
      margin-right: 12%;
    }
@@ -120,7 +120,7 @@
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
-  #payment .search .search-box, #service-page .search .search-box {
+  #payment .search .search-box, .service-page .search .search-box {
     width: 40%;
    }
   .navbar-light .navbar-toggler {
@@ -147,7 +147,7 @@
     display: none;
   }
   #left-slide {
-    top: 86px;
+    top: 100px;
   }
   #left-slide ul li a {
     position: relative;
@@ -207,7 +207,7 @@
 
 
    /* service page */
-   #service-page{
+   .service-page{
     margin-left: 16%;
      margin-right: 12%;
    }
@@ -270,7 +270,7 @@
         width: 100px;
     }
     #left-slide{
-        top: 86px;
+        top: 100px;
     }
     #left-slide ul li a {
       position: relative;
@@ -341,8 +341,8 @@
         width: 60%;
         margin-left: 24%;
     }
-    #service-page .search .search-box, #media .search .search-box {
-      width: 50%;
+    .service-page .search .search-box, #media .search .search-box {
+      width: 65%;
     }
     #footer .logo {
       width: 60%;
@@ -351,7 +351,7 @@
 
 
      /* service page */
-  #service-page{
+  .service-page{
     margin-left: 25%;
      margin-right: 12%;
    }
@@ -389,7 +389,7 @@
   margin: 16px 0;
   padding-right: 10px;
 }
-#payment .search, #service-page .search, #media .search {
+#payment .search, .service-page .search, #media .search {
   margin-top: 3%;
   margin-right: 10%;
 }

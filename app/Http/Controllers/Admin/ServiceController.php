@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Models\ServiceOrder;
 use Illuminate\Http\Request;
+use App\Models\ServiceOrderItem;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class ServiceController extends Controller
@@ -165,5 +166,30 @@ class ServiceController extends Controller
         // $deleteService->delete();
         // return redirect()->route('service.index');
     }
+
+
+
+
+    public function serviceOrders()
+    {
+        $service_orders = ServiceOrder::orderBy('id', 'desc')->paginate(30);
+        return view('admin.oder_service.order', compact('service_orders'));
+    }
+
+    public function serviceOrderItem($id)
+    {
+        $service_items = ServiceOrderItem::where('service_order_id',$id)->get();
+        return view('admin.oder_service.oderItem', compact('service_items'));
+    }
+
+
+
+
+
+
+
+
+
+
 
 }

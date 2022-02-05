@@ -36,7 +36,7 @@
          box-shadow: 0 1pt 12pt rgb(150, 165, 237);
     }
     .clients {
-        width: 310px;
+        width: 100%;
         height: 70px;
         display: inline-block;
         box-shadow: 0 1pt 12pt rgb(150, 165, 237);

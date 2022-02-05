@@ -5,17 +5,46 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Team;
 use App\Models\Client;
 use App\Models\Slider;
+use App\Models\Service;
+use App\Models\User;
 use App\Models\CompanyLogo;
+use App\Models\ServiceOrder;
 use Illuminate\Http\Request;
 use App\Models\GeneralSetting;
 use App\Http\Controllers\Controller;
-use App\Models\Service;
-use App\Models\ServiceOrder;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Artisan;
 
 class IndexController extends Controller
 {
+
+    
+    public function userRegister(Request $request){
+             
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'max:14', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
+        ]);
+
+        $data['password']=Hash::make($request->password);
+        User::query()->create($data);
+        Auth::attempt(['email'=> $request->email, 'password' => $request->password]);
+        if(Auth::user()){
+           return redirect()->route('service');
+        }  
+    }
+
+
+
+
+
+
+
+
+
 
     public function index()
     {
@@ -105,10 +134,6 @@ class IndexController extends Controller
         return view('frontend.sign_in');
     }
 
-    public function userRegister()
-    {
-        return view('frontend.sign_up');
-    }
 
 
 

@@ -53,7 +53,7 @@
     <br>
     <br>
     <br>
-    <section id="service-page">
+    <section class="service-page">
         <div class="container">
        
             <div class="row">

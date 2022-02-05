@@ -52,7 +52,7 @@ body {
   -moz-transform: .5s;
   -ms-transform: .5s;
   -o-transform: .5s; */
-    height: 80px;
+    height: 100px;
 }
 .logo {
     margin: 5px 0 5px 30px;
@@ -127,7 +127,7 @@ body {
 #left-slide {
     position: absolute;
     left: 0;
-    top: 80px;
+    top: 100px;
     width: 12%;
     background: #ff6633;
     z-index: 10;
@@ -147,7 +147,7 @@ body {
     position: relative;
     padding: 30px 10px 30px 20px;
     color: #333;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     text-align: center;
 }
@@ -186,12 +186,12 @@ body {
 /* media section css */
 
 #payment .search,
-#service-page .search,
+.service-page .search,
 #media .search {
     margin-top: 3%;
 }
 #payment .search .search-box,
-#service-page .search .search-box,
+.service-page .search .search-box,
 #media .search .search-box {
     width: 20%;
     height: 26px;
@@ -205,7 +205,7 @@ body {
     border: 0;
 }
 #payment .search .search-icon,
-#service-page .search .search-icon,
+.service-page .search .search-icon,
 #media .search .search-icon {
     padding: 2px 5px 2px 2px;
     background-color: #ccc;
@@ -322,25 +322,25 @@ body {
 
 /* service page css  */
 
-#service-page {
+.service-page {
     margin: 50px 5% 0 22%;
 }
 
-#service-page .title {
+.service-page .title {
     font-size: 21px;
     font-weight: 700;
     color: #333;
     text-align: center;
     margin: 15px 0;
 }
-#service-page .img img {
+.service-page .img img {
     width: 100%;
     border: 2px solid #ff6633;
     border-radius: 15px;
 }
 
 .description .price,
-#service-page .price {
+.service-page .price {
     text-align: center;
     color: #333;
     font-weight: 700;

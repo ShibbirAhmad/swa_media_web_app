@@ -29,28 +29,29 @@
                                             <th>#</th>
                                             <th>Name</th>
                                             <th>Phone</th>
-                                            {{-- <th>Address</th> --}}
+                                            <th>Email</th>
                                             <th>Invoice</th>
-                                            <th>Payment</th>
-                                            <th>Due</th>
-                                            <th>Status</th>
+                                            <th>Amount</th>
+                                            <th>Paid</th>
+                                            <th>Payment Status</th>
                                             <th>Transaction ID</th>
                                             <th>Details</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @foreach ($service_oders as $key => $service)
+                                        @foreach ($service_orders as $key => $service)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $service->user->name }}</td>
                                                 <td>{{ $service->user->phone }}</td>
+                                                <td>{{ $service->user->email }}</td>
                                                 <td>{{ $service->invoice_no }}</td>
-                                                <td>{{ $service->paid }}</td>
-                                                <td>{{ $service->amount -  $service->paid}}</td>
+                                                <td>${{ $service->amount }}</td>
+                                                <td>${{  $service->paid}}</td>
                                                 <td>{{ $service->payment_status }}</td>
                                                 <td>{{ $service->transaction_id}}</td>
-                                                <td><a href="{{route('all.service', $service->id)}}"><button class="btn btn-info">Details</button></a></td>
+                                                <td><a href="{{route('service_order_item', $service->id)}}"><button class="btn btn-info">Details</button></a></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -58,7 +59,7 @@
                             </div>
 
                             <div class="pagination_container">
-                                {{-- {{ $orders->links() }} --}}
+                                {{ $service_orders->links() }}
                             </div>
 
                         </div>

@@ -1,35 +1,42 @@
 @extends('frontend.layouts.app')
 @section('content')
 <section id="contact-us" style="margin-top: 50px">
-    <section id="service-page">
+    <section class="service-page">
         <div class="container">
                 <div class="table-responsive">
-                    <table class="table table-bordered text-center table-striped table-hover mb-4">
+                    <table class="table table-bordered text-center table-centered table-striped table-hover mb-4">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Invoice</th>
-                                <th>Payment</th>
-                                <th>Due</th>
-                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Client</th>
+                                <th>Order Invoice NO</th>
+                                <th>Amount</th>
+                                <th>Paid</th>
+                                <th>Payment Status</th>
                                 <th>Transaction ID</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             @foreach ($service_orders as $key => $service)
                             <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $service->user->name }}</td>
-                                <td>{{ $service->user->phone }}</td>
+                                <td>{{ $service->created_at }}</td>
+                                <td>
+                                
+                                  {{ $service->user->name }} <br>
+                                  {{ $service->user->email }} <br>
+                                  {{ $service->user->phone }} 
+                                
+                                </td>
                                 <td>{{ $service->invoice_no }}</td>
-                                <td>{{ $service->paid }}</td>
-                                <td>{{ $service->amount -  $service->paid}}</td>
+                                <td>${{ $service->amount }}</td>
+                                <td>${{ $service->paid}}</td>
                                 <td>{{ $service->payment_status }}</td>
                                 <td>{{ $service->transaction_id}}</td>
-                                {{-- <td><a href="{{route('all.service', $service->id)}}"><button class="btn btn-info">Details</button></a></td> --}}
+                                <td>
+                                    <a class="btn btn-sm btn-success" href="{{ route('service_details',$service->id) }}">Details</a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

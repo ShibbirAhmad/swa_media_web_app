@@ -13,7 +13,16 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form class="form" action="{{ route('register') }}" method="post">
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                    <form class="form" action="{{ route('new_user_register') }}" method="post">
                         @csrf
                         <div class="mb-3">
                          <input name="name" type="text" class="form-control" placeholder="Name">

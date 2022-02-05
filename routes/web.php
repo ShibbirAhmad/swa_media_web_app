@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\TeamController;
-use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\SliderController;
@@ -15,12 +14,10 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\ServiceOrderController as ServiceOrder;
 use App\Http\Controllers\Admin\CompanyLogoController;
-use App\Http\Controllers\Admin\ServiceOrderController;
 use App\Http\Controllers\Admin\GeneralSettingController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ServiceOrderController as AdminServiceOrderController;
 use App\Http\Controllers\Admin\UserController;
-
 
 
 /*
@@ -47,12 +44,14 @@ use App\Http\Controllers\Admin\UserController;
  Route::post('api/cart/item/update', [CartController::class, 'cartUpdate'])->name('cart_update');
  Route::get('cart/remove/{rowId}', [CartController::class, 'cartDestroy'])->name('cart_remove');
  Route::get('cart/content', [CartController::class, 'cartContent'])->name('cart_content');
-//service order routes
- Route::post('api/create/service/order',[ServiceOrder::class,'storeOrder']);
+
  Route::get('contact',[IndexController::class,'contact'])->name('contact');
  Route::get('support',[IndexController::class,'support'])->name('support');
  Route::get('about',[IndexController::class,'about'])->name('about');
  Route::get('company',[IndexController::class,'company'])->name('company');
+ //user register 
+ Route::post('register/new/user',[IndexController::class,'userRegister'])->name('new_user_register');
+
 
  //sign up
 
@@ -63,12 +62,13 @@ use App\Http\Controllers\Admin\UserController;
 ], function () {
 
     //user dashboard
-    Route::get('/dashboard', [ServiceOrderController::class, 'index'])->name('user.dashboard');
+    Route::get('/dashboard', [ServiceOrder::class, 'index'])->name('user.dashboard');
+    //service order routes
+    Route::post('api/create/service/order',[ServiceOrder::class,'storeOrder']);
+    Route::get('service/order/items/{id}',[ServiceOrder::class,'serviceDetails'])->name('service_details');
 
 });
 
-
- Route::get('api/create/service/order',[ServiceOrderController::class,'storeOrder']);
 
 ////start admin route
 Route::group([
@@ -78,11 +78,9 @@ Route::group([
 
     Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
     /*--- Service Controller Start ---*/
-    Route::get('service/order', [AdminServiceOrderController::class, 'serviceOrders'])->name('service.order');
-    Route::get('service/order/item', [AdminServiceOrderController::class, 'serviceOrderItem'])->name('service.orderItem');
+    Route::get('service/order', [ServiceController::class, 'serviceOrders'])->name('service.order');
+    Route::get('service/order/item/{id}', [ServiceController::class, 'serviceOrderItem'])->name('service_order_item');
     /*--- Service Controller End ---*/
-
-
 
 
     //resource route
@@ -100,7 +98,6 @@ Route::group([
 });
 
 Auth::routes();
-
 
 Route::get('/admin/secret', [HomeController::class, 'adminLogin'])->name('admin.login');
 

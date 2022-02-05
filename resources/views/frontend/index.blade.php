@@ -22,8 +22,8 @@
         <div class="col-lg-5 col-xxl-4 col-md-4 ">
           <div class="right-img">
             <img
-              src="{{asset('storage/images/basic_img/1.png')}}"
-              alt=""
+              src="{{asset('storage/images/basic_img/design_demo.png')}}"
+      
             />
           </div>
         </div>

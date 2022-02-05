@@ -13,6 +13,16 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form class="form" method="post" action="{{ route('login') }}">
                         @csrf
                         @foreach($errors->all() as $error)
@@ -28,6 +38,7 @@
                             <button type="submit" class="form-control">submit</button>
                         </div>
                     </form>
+                   <h4>Don't have account ? <a href="{{ url('register') }}">register here</a></h4>
                 </div>
             </div>
 

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\User;
-use App\Models\Service;
 use App\Models\ServiceOrder;
 use Illuminate\Http\Request;
 use App\Models\ServiceOrderItem;
@@ -14,37 +12,29 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ServiceOrderController extends Controller
 {
-    public function orderList()
+
+
+
+
+
+    public function index()
     {
-        $user = Auth::user();
-
-    }
-    // public function orderList()
-    // {
-    //     $user = Auth::user();
-    //     $customer = Customer::where('phone', $user->mobile_no)->first();
-    //     if ($customer) {
-    //         $orders = Service::where('customer_id', $customer->id)->orderBy('id', 'desc')->paginate(5);
-    //         return response()->json([
-    //             'status' => 'SUCCESS',
-    //             'orders' => $orders
-    //         ]);
-    //     }
-    // }
-
-
-    public function serviceOrder(Request $request)
-    {
-        $user = Auth::user();
-        $user_id = $user->id;
-        $amount = $request->amount;
-        $payment_status = $request->payment_status;
-        $paid = $request->paid;
+        $auth = Auth::user()->id;
+        $service_orders = ServiceOrder::where('user_id', $auth)->orderBy('id', 'desc')->get();
+        return view('frontend.user_dashboard.index', compact('service_orders'));
     }
 
 
+    public function serviceDetails($id)
+    {
+
+        $order=ServiceOrder::where('user_id',Auth::user()->id)->where('id',$id)->first();
+        $service_items = ServiceOrderItem::where('service_order_id', $order->id)->get();
+        return view('frontend.user_dashboard.service_details', compact('service_items','order'));
+    }
 
 
+    
 
 
     public  function  storeOrder(Request $request){
@@ -55,8 +45,7 @@ class ServiceOrderController extends Controller
             $invoice_no = 222 +  ServiceOrder::max('id') ?? 22 +  rand(1111,9999);
             $order = new ServiceOrder();
             $order->invoice_no = $invoice_no ;
-            // $order->user_id = auth()->user()->id ;
-            $order->user_id = 1;
+            $order->user_id = auth()->user()->id ;
             $order->transaction_id = $request->transaction_id ;
             $order->payment_status = $request->payment_status ;
             $order->amount=Cart::subtotal();
@@ -85,24 +74,10 @@ class ServiceOrderController extends Controller
             ]);
         }
 
- }
-
-
-
-
-
-
-
-
-
-
-
-    public function index()
-    {
-        return 'Hello';
-        $auth_id = Auth::user()->id;
-        $service_oders = ServiceOrder::where('auth_id', 'user_id')->orderBy('id', 'desc')->paginate(30);
-        return view('frontend.user_dashboard.index', compact('service_oders'));
     }
+
+
+
+
 
 }
