@@ -35,6 +35,14 @@
          height: 60px;
          box-shadow: 0 1pt 12pt rgb(150, 165, 237);
     }
+    .clients {
+        width: 310px;
+        height: 70px;
+        display: inline-block;
+        box-shadow: 0 1pt 12pt rgb(150, 165, 237);
+        margin: 10px;
+        text-align: center;
+    }
 
 
 </style>

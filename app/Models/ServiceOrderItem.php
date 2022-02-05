@@ -10,6 +10,11 @@ class ServiceOrderItem extends Model
     use HasFactory;
     public function service()
     {
+        return $this->belongsTo('App\Models\Service', 'service_id');
+    }
 
+    public function serviceOrder()
+    {
+        return $this->belongsTo('App\Models\ServiceOrder', 'service_order_id');
     }
 }

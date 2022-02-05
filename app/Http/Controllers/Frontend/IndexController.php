@@ -9,8 +9,10 @@ use App\Models\CompanyLogo;
 use Illuminate\Http\Request;
 use App\Models\GeneralSetting;
 use App\Http\Controllers\Controller;
-use App\Models\Service;  
+use App\Models\Service;
+use App\Models\ServiceOrder;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -25,6 +27,8 @@ class IndexController extends Controller
         $clients = Client::where('status',1)->get();
         $setting=GeneralSetting::latest()->first();
         $services = Service::where('status',1)->orderBy('id', 'desc')->get();
+
+
 
         return view('frontend.index',compact(['clients','teams','sliders','logos','setting', 'services']));
     }
@@ -59,8 +63,8 @@ class IndexController extends Controller
         return view('frontend.business',compact('business_card'));
     }
 
-  
-  
+
+
     public function serviceDetails($id)
     {
         $service = Service::findOrFail($id);
@@ -68,10 +72,10 @@ class IndexController extends Controller
         return view('frontend.logoPayment', compact('service','related_services'));
     }
 
-  
+
     public function serviceSearch(Request $request)
     {
-      
+
         $services =Service::where('title','like','%'.$request->search.'%')->orWhere('description','like','%'.$request->search.'%')->get();
         return view('frontend.search', compact('services'));
     }

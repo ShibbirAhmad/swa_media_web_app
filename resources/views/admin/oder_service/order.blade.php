@@ -29,73 +29,30 @@
                                             <th>#</th>
                                             <th>Name</th>
                                             <th>Phone</th>
-                                            <th>Address</th>
-
-                                            <th>Date</th>
+                                            {{-- <th>Address</th> --}}
                                             <th>Invoice</th>
                                             <th>Payment</th>
-                                            <th>Discount</th>
+                                            <th>Due</th>
                                             <th>Status</th>
-                                            <th>Action</th>
+                                            <th>Transaction ID</th>
+                                            <th>Details</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        {{-- @foreach ($orders as $key => $order)
+                                        @foreach ($service_oders as $key => $service)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ $order->customer->name }}</td>
-                                                <td>{{ $order->customer->phone }}</td>
-                                                <td>{{ $order->customer->address }}</td>
-
-                                                <td>{{ $order->created_at }}</td>
-                                                <td>{{ $order->invoice_no }}</td>
-                                                <td>
-                                                    <div class="payment_container">
-                                                        <ul>
-                                                            <li>Total: <span style="padding-left: 25px">
-                                                                    &#2547;{{ $order->total }} </span> </li>
-                                                            <li>Shipping:<span
-                                                                    style="padding-left: 5px">&#2547;{{ $order->shipping_cost }}
-                                                                </span> </li>
-                                                            <li>Paid:
-                                                                @if (!empty($order->payment))
-
-                                                                    @if ($order->payment->status == 'Pending')
-                                                                        <span style="padding-left: 30px">
-                                                                            {{ 'Pending' . '-' . $order->payment->amount }}
-                                                                        </span>
-                                                                    @else
-                                                                        <span style="padding-left: 30px">
-                                                                            {{ $order->payment->status . '-' . $order->payment->amount }}
-                                                                        </span>
-                                                                    @endif
-
-
-                                                                @else
-                                                                    <span style="padding-left: 30px">&#2547;0</span>
-                                                                @endif
-
-                                                            </li>
-                                                            <li>Due: <span
-                                                                    style="padding-left: 32px">&#2547;{{ $order->total + $order->shipping_cost - ($order->paid + $order->discount) }}
-                                                                </span></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                                <td>{{ $order->discount }}</td>
-                                                <td>
-                                                    <span class="badge badge-info">{{ $order->status }}</span>
-                                                    @if ($order->print_status == 1)
-                                                        <span style="margin-top: 10px" class="badge badge-success"> Printed
-                                                        </span>
-                                                    @endif
-                                                </td>
-                                                <td>
-
-                                                </td>
+                                                <td>{{ $service->user->name }}</td>
+                                                <td>{{ $service->user->phone }}</td>
+                                                <td>{{ $service->invoice_no }}</td>
+                                                <td>{{ $service->paid }}</td>
+                                                <td>{{ $service->amount -  $service->paid}}</td>
+                                                <td>{{ $service->payment_status }}</td>
+                                                <td>{{ $service->transaction_id}}</td>
+                                                <td><a href="{{route('all.service', $service->id)}}"><button class="btn btn-info">Details</button></a></td>
                                             </tr>
-                                        @endforeach --}}
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

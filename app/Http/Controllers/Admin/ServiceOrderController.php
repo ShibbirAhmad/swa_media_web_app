@@ -27,9 +27,8 @@ class ServiceOrderController extends Controller
     public function index()
     {
         $auth = Auth::user()->id;
-        $orders = ServiceOrder::where('user_id', $auth)->orderBy('id', 'desc')->get();
-        return view('frontend.user_dashboard.index', compact('orders'));
-
+        $service_orders = ServiceOrder::where('user_id', $auth)->orderBy('id', 'desc')->get();
+        return view('frontend.user_dashboard.index', compact('service_orders'));
     }
 
 

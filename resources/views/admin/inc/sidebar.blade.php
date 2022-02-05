@@ -151,7 +151,7 @@
                 </a>
             </li>
 
-            <li class="menu">
+            {{-- <li class="menu">
                 <a href="{{ route('service.orderItem') }}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -165,7 +165,7 @@
                         <span>Service Order Item</span>
                     </div>
                 </a>
-            </li>
+            </li> --}}
 
 
 
@@ -204,7 +204,7 @@
                             <circle cx="12" cy="12" r="6"></circle>
                             <circle cx="12" cy="12" r="2"></circle>
                         </svg>
-                        <span>Contact</span>
+                        <span>Message</span>
                     </div>
                 </a>
              </li>
